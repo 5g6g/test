@@ -1,0 +1,10 @@
+---
+name: rel
+on:
+  release:
+    types: [published]
+jobs:
+  test-release:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo this is a release on main
