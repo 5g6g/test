@@ -1,0 +1,47 @@
+---
+version: 2
+project_name: hi
+builds:
+  - id: hi
+    dir: .
+    main: .
+    binary: hi
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - arm64
+archives:
+  - id: hi-zip
+    builds:
+      - hi
+    format: zip
+    name_template: "hi-{{ .Os }}-{{ .Arch }}"
+release:
+  github:
+    owner: 5g6g
+    name: test
+  ids:
+    - hi-zip
+  draft: true
+brews:
+  - name: hi
+    homepage: "https://example.com"
+    description: "Hi"
+    repository:
+      owner: 5g6g
+      name: homebrew-tap
+    directory: Formula
+    skip_upload: auto
+    ids:
+      - hi-zip
+    extra_install: |
+      generate_completions_from_executable(bin/"hi", "generate", "shell-completion", base_name: "hi")
+    caveats: |
+        Nothing.
+    commit_author:
+      name: Andrew Hsu
+      email: xuzuan@gmail.com
+announce:
+  skip: "true"
