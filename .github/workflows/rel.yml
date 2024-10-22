@@ -7,7 +7,7 @@ jobs:
   list-release:
     runs-on: ubuntu-latest
     steps:
-      - run: gh release list --exclude-drafts --exclude-pre-release
+      - run: gh release list --exclude-drafts --exclude-pre-releases
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
